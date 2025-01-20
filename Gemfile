@@ -63,3 +63,5 @@ group :production do
   gem 'pg'
 end
 gem "devise", "~> 4.9"
+gem "sass-rails"
+gem "bootstrap"
