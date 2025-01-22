@@ -1,0 +1,15 @@
+<h2>Current Quote</h2>
+<% if @quote.present? %>
+  <p>Price: $<%= @quote.first['price'] %></p>
+  <p>Change: <%= @quote.first['changesPercentage'] %>%</p>
+<% else %>
+  <p>No data available for this symbol.</p>
+<% end %>
+
+<h2>Company Profile</h2>
+<% if @quote.present? %>
+  <p>Name: <%= @quote.first['name'] %></p>
+  <p>Exchange: <%= @quote.first['exchange'] %></p>
+<% else %>
+  <p>No company profile available.</p>
+<% end %>
