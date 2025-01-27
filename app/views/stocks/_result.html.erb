@@ -1,0 +1,13 @@
+<% if @quote.present? %>
+    <div class="card mt-4">
+        <div class="card card-header">
+            <h4>Current Quote</h4>
+        </div>
+        <ul class="list-group list-group-flush">
+            <li class="list-group-item"><strong>Symbol: </strong><%= @quote.first['symbol'] %></li>
+            <li class="list-group-item"><strong>Name: </strong><%= @quote.first['name'] %></li>
+            <li class="list-group-item"><strong>Price: </strong>$<%= @quote.first['price'] %></li>
+            <li class="list-group-item"><strong>Change: </strong><%= @quote.first['changesPercentage'] %>%</li>
+        </ul>
+    </div>
+<% end %>

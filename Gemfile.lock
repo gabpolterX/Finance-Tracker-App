@@ -116,6 +116,8 @@ GEM
     execjs (2.10.0)
     ffi (1.17.1-x64-mingw-ucrt)
     ffi (1.17.1-x86_64-linux-gnu)
+    font-awesome-rails (4.7.0.9)
+      railties (>= 3.2, < 9.0)
     globalid (1.2.1)
       activesupport (>= 6.1)
     httparty (0.22.0)
@@ -336,6 +338,7 @@ DEPENDENCIES
   capybara
   debug
   devise (~> 4.9)
+  font-awesome-rails
   httparty
   importmap-rails
   jbuilder
