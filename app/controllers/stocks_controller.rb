@@ -1,5 +1,7 @@
 class StocksController < ApplicationController
   def index
+    @tracked_stocks = current_user.stocks if user_signed_in?
+    
     if params[:stock].present?
       symbol = params[:stock].upcase
       fmp = FmpApi.new
@@ -9,9 +11,9 @@ class StocksController < ApplicationController
         flash[:alert] = "No data available for this symbol."
         @quote = nil
       end
+
     else
       flash[:alert] = "Please enter a stock symbol"
-      render :index
     end
   end
 end

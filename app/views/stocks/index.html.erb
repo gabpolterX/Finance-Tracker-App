@@ -19,3 +19,7 @@
 <div class="results" id="results">
     <%= render 'stocks/result' %>
 </div>
+
+<% if @tracked_stocks.present? %>
+    <%= render 'list' %>       
+<% end %>
