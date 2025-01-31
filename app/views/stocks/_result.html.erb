@@ -7,7 +7,7 @@
             <li class="list-group-item"><strong>Symbol: </strong><%= @quote.first['symbol'] %></li>
             <li class="list-group-item"><strong>Name: </strong><%= @quote.first['name'] %></li>
             <li class="list-group-item"><strong>Price: </strong>$<%= @quote.first['price'] %></li>
-            <li class="list-group-item"><strong>Change: </strong><%= @quote.first['changesPercentage'] %>%</li>
+            <%= button_to "Add to your portfolio", user_stocks_path(ticker: @quote.first['symbol']), method: :post, class: "btn btn-outline-success mt-1" %>
         </ul>
     </div>
 <% end %>
