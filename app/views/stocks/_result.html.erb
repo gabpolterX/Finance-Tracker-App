@@ -7,7 +7,11 @@
             <li class="list-group-item"><strong>Symbol: </strong><%= @quote.first['symbol'] %></li>
             <li class="list-group-item"><strong>Name: </strong><%= @quote.first['name'] %></li>
             <li class="list-group-item"><strong>Price: </strong>$<%= @quote.first['price'] %></li>
-            <%= button_to "Add to your portfolio", user_stocks_path(ticker: @quote.first['symbol']), method: :post, class: "btn btn-outline-success mt-1" %>
+            <% if current_user.stocks.count < 10 %>
+                <%= button_to "Add to your portfolio", user_stocks_path(ticker: @quote.first['symbol']), method: :post, class: "btn btn-outline-success mt-1" %>
+            <% else %>
+                <li class="list-group-item"><span class="badge text-bg-secondary">You cannot add more than 10 stocks</span>  
+            <% end %>
         </ul>
     </div>
 <% end %>
