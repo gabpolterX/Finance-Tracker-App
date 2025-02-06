@@ -11,9 +11,6 @@ class StocksController < ApplicationController
         flash[:alert] = "No data available for this symbol."
         @quote = nil
       end
-
-    else
-      flash[:alert] = "Please enter a stock symbol"
     end
   end
 end

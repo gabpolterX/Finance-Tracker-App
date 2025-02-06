@@ -1,0 +1,35 @@
+<% if @friends.any? %>
+  <div class="row">
+    <div class="col-9">
+      <table class="table table-bordered table-hover mt-2">
+        <thead>
+          <tr>
+            <th scope="col">Full Name</th>
+            <th scope="col">Email <%= fa_icon 'envelope-o' %></th>
+            <th scope="col">Actions</th>
+          </tr>
+        </thead>
+        <tbody class="table-group-divider">
+          <% @friends.each do |friend| %>
+            <tr>
+              <td><%= friend.full_name %></td>
+              <td><%= friend.email %></td>
+              <td>
+                <div class="d-flex gap-2">
+                  <%= link_to "View Profile", user_path(friend), class: "btn btn-sm btn-info" %>
+                  <% if !current_user.friends_with?(friend) %>
+                    <%= button_to "Add Friend", friendships_path(friend: friend), method: :post, class: "btn btn-sm btn-success" %>
+                  <% else %>
+                    <%= button_to "Stop Following", friendship_path(friend), method: :delete, class: "btn btn-sm btn-danger" %>
+                  <% end %>
+                </div>
+              </td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+<% else %>
+  <h3 class="mt-4">We could not found nobody.</h3>
+<% end %>
