@@ -1,17 +1,23 @@
 <% if @quote.present? %>
-    <div class="card mt-4">
-        <div class="card card-header">
-            <h4>Current Quote</h4>
-        </div>
-        <ul class="list-group list-group-flush">
-            <li class="list-group-item"><strong>Symbol: </strong><%= @quote.first['symbol'] %></li>
-            <li class="list-group-item"><strong>Name: </strong><%= @quote.first['name'] %></li>
-            <li class="list-group-item"><strong>Price: </strong>$<%= @quote.first['price'] %></li>
-            <% if current_user.stocks.count < 10 %>
-                <%= button_to "Add to your portfolio", user_stocks_path(ticker: @quote.first['symbol']), method: :post, class: "btn btn-outline-success mt-1" %>
-            <% else %>
-                <li class="list-group-item"><span class="badge text-bg-secondary">You cannot add more than 10 stocks</span>  
-            <% end %>
-        </ul>
+  <div class="card mt-4">
+    <div class="card card-header">
+      <h4>Current Quote</h4>
     </div>
+    <ul class="list-group list-group-flush">
+      <li class="list-group-item"><strong>Symbol: </strong><%= @quote.first['symbol'] %></li>
+      <li class="list-group-item"><strong>Name: </strong><%= @quote.first['name'] %></li>
+      <li class="list-group-item"><strong>Price: </strong>$<%= @quote.first['price'] %></li>
+      <% if current_user.user_can_track?(@quote.first['symbol']) %>
+        <%= button_to "Add to your portfolio", user_stocks_path(ticker: @quote.first['symbol']), method: :post, class: "btn btn-outline-success mt-1" %>
+      <% else %>
+        <li class="list-group-item">
+          <% if current_user.stocks.exists?(ticker: @quote.first['symbol']) %>
+            <span class="badge text-bg-secondary">You already added this stock</span>
+          <% else %>
+            <span class="badge text-bg-secondary">You cannot add more than 10 stocks</span>
+          <% end %>
+        </li>
+      <% end %>
+    </ul>
+  </div>
 <% end %>

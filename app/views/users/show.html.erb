@@ -1,1 +1,38 @@
-<h2>User details</h2>
+<h2 class="mt-2">User details</h2>
+
+<div class="row">
+    <div class="col-9">
+        <table class="table table-bordered table-hover mt-2">
+            <thead>
+                <tr>
+                <th scope="col">Full Name</th>
+                <th scope="col">Email <%= fa_icon 'envelope-o' %></th>
+                <th scope="col">Actions</th>
+                </tr>
+            </thead>
+            <tbody class="table-group-divider">
+                <tr>
+                    <td><%= @user.full_name %></td>
+                    <td><%= @user.email %></td>
+                    <td>
+                    <div class="d-flex gap-2">
+                        <% if !current_user.friends_with?(@user) %>
+                            <%= button_to "Add Friend", friendships_path(friend: @user), method: :post, class: "btn btn-sm btn-success" %>
+                        <% else %>
+                            <%= button_to "Stop Following", friendship_path(@user), method: :delete, class: "btn btn-sm btn-danger" %>
+                        <% end %>
+                    </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<h2 class="mt-2"> <%= @user.full_name %> is tracking this stocks.</h2>
+
+<% if @tracked_stocks.present? %>
+    <%= render 'stocks/list' %>
+<% else %>
+    <p class="lead">This user is not tracking any stock</p>
+<% end %>

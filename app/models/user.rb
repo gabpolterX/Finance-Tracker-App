@@ -25,4 +25,8 @@ class User < ApplicationRecord
   def friends_with?(user)
     friends.include?(user)
   end
+
+  def user_can_track?(ticker)
+    !stocks.exists?(ticker: ticker) && stocks.count < 10
+  end
 end
